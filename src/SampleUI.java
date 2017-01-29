@@ -271,6 +271,8 @@ public class SampleUI extends javax.swing.JFrame {
         String jsonFileName = ssn + ".json";
         System.out.println(ssn.length());
         toJsonFile(jsonFileName, obj);
+        cleanup();
+        ssnTF.setText("Information saved successfully");
     }//GEN-LAST:event_saveBtnActionPerformed
 
     public void toJsonFile(String jsonFileName, JSONObject obj)
@@ -318,19 +320,26 @@ public class SampleUI extends javax.swing.JFrame {
       catch (Exception ex)
       {
         System.out.println("Exception importing from json: " + ex.getMessage());
-        nameTF.setText("SSN record not found");
-        symptomsTF.setText("");
-        allergiesTF.setText("");
-        medTF.setText("");
-        pastTF.setText("");
-        lastTF.setText("");
-        eventsTF.setText("");
+        cleanup();
+        ssnTF.setText("SSN record not found");
       }
     }//GEN-LAST:event_reloadBtnActionPerformed
 
     private void ssnTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssnTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ssnTFActionPerformed
+
+    public void cleanup()
+    {
+      nameTF.setText("");
+      symptomsTF.setText("");
+      allergiesTF.setText("");
+      medTF.setText("");
+      pastTF.setText("");
+      lastTF.setText("");
+      eventsTF.setText("");
+      ssnTF.setText("");
+    }
 
     /**
      * @param args the command line arguments
