@@ -78,6 +78,7 @@
     <delete>
       <fileset dir="." includes="**/*.json"/>
     </delete>
+    <delete file="jsonlist"/>
   </target>
 
   <target name="build" depends="prepare">

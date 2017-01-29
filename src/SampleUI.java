@@ -3,8 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.util.List;
-import java.util.ArrayList;
 import org.json.JSONString;
 import org.json.JSONObject;
 import org.json.JSONTokener;
