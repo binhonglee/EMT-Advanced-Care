@@ -74,7 +74,10 @@
   </target>
 
   <target name="clean">
-     <delete dir="${build}" failonerror="false"/>
+    <delete dir="${build}" failonerror="false"/>
+    <delete>
+      <fileset dir="." includes="**/*.json"/>
+    </delete>
   </target>
 
   <target name="build" depends="prepare">

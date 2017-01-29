@@ -42,6 +42,8 @@
                           <Component id="symptomsTF" alignment="0" min="-2" pref="311" max="-2" attributes="0"/>
                           <Component id="nameLbl" min="-2" max="-2" attributes="0"/>
                           <Component id="nameTF" min="-2" pref="311" max="-2" attributes="0"/>
+                          <Component id="ssnLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ssnTF" alignment="0" min="-2" pref="311" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
                   </Group>
@@ -88,8 +90,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="eventsTF" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="reloadBtn" pref="52" max="32767" attributes="0"/>
+              <Component id="ssnLbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="ssnTF" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="reloadBtn" pref="69" max="32767" attributes="0"/>
                   <Component id="saveBtn" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -178,10 +184,20 @@
     </Component>
     <Component class="javax.swing.JButton" name="reloadBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Reload"/>
+        <Property name="text" type="java.lang.String" value="Retrieve"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reloadBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ssnLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SSN"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="ssnTF">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ssnTFActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

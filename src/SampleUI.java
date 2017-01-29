@@ -52,6 +52,8 @@ public class SampleUI extends javax.swing.JFrame {
         eventsTF = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         reloadBtn = new javax.swing.JButton();
+        ssnLbl = new javax.swing.JLabel();
+        ssnTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,10 +120,18 @@ public class SampleUI extends javax.swing.JFrame {
             }
         });
 
-        reloadBtn.setText("Reload");
+        reloadBtn.setText("Retrieve");
         reloadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reloadBtnActionPerformed(evt);
+            }
+        });
+
+        ssnLbl.setText("SSN");
+
+        ssnTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ssnTFActionPerformed(evt);
             }
         });
 
@@ -147,7 +157,9 @@ public class SampleUI extends javax.swing.JFrame {
                             .addComponent(symptomsLbl)
                             .addComponent(symptomsTF, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nameLbl)
-                            .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ssnLbl)
+                            .addComponent(ssnTF, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 46, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -188,8 +200,12 @@ public class SampleUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(eventsTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reloadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addComponent(ssnLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ssnTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(reloadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -227,6 +243,14 @@ public class SampleUI extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        String ssn = ssnTF.getText();
+
+        if (ssn.length() != 9)
+        {
+          ssnTF.setText("Invalid SSN. Please try again.");
+          return;
+        }
+
         String name = nameTF.getText();
         String symptoms = symptomsTF.getText();
         String allergies = allergiesTF.getText();
@@ -244,7 +268,8 @@ public class SampleUI extends javax.swing.JFrame {
         obj.put("Last", last);
         obj.put("Events", events);
 
-        String jsonFileName = name + ".json";
+        String jsonFileName = ssn + ".json";
+        System.out.println(ssn.length());
         toJsonFile(jsonFileName, obj);
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -266,7 +291,14 @@ public class SampleUI extends javax.swing.JFrame {
 
     private void reloadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadBtnActionPerformed
       // TODO add your handling code here:
-      String jsonFileName = nameTF.getText() + ".json";
+      String ssn = ssnTF.getText();
+      if (ssn.length() != 9)
+      {
+        ssnTF.setText("Invalid SSN. Please try again.");
+        return;
+      }
+
+      String jsonFileName = ssn + ".json";
 
       try
       {
@@ -286,8 +318,19 @@ public class SampleUI extends javax.swing.JFrame {
       catch (Exception ex)
       {
         System.out.println("Exception importing from json: " + ex.getMessage());
+        nameTF.setText("SSN record not found");
+        symptomsTF.setText("");
+        allergiesTF.setText("");
+        medTF.setText("");
+        pastTF.setText("");
+        lastTF.setText("");
+        eventsTF.setText("");
       }
     }//GEN-LAST:event_reloadBtnActionPerformed
+
+    private void ssnTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssnTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ssnTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,6 +382,8 @@ public class SampleUI extends javax.swing.JFrame {
     private javax.swing.JTextField pastTF;
     private javax.swing.JButton reloadBtn;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JLabel ssnLbl;
+    private javax.swing.JTextField ssnTF;
     private javax.swing.JLabel symptomsLbl;
     private javax.swing.JTextField symptomsTF;
     // End of variables declaration//GEN-END:variables
