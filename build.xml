@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<project name="Sample OPQRST"
+  default="targets" basedir="."
+  xmlns:dn="antlib:org.apache.ant.dotnet"
+  xmlns="antlib:org.apache.tools.ant">
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+  <property name="src" value="src/"/>
+
+  <property name="build" value="classes"/>
+  <property name="lib" value="./lib" />
+  <property environment="env"/>
+  <property name="user" value="${env.USERNAME}"/>
+
+  <path id="compile.classpath">
+     <pathelement location="${build}"/>
+     <pathelement path="${lib}/json.jar"/>
+  </path>
+
+  <target name="targets">
+     <echo message="Targets are clean, prepare, build, execute and targets"/>
+  </target>
+
+  <target name="prepare">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}" />
+
+    <condition property="build.host.islinux">
+      <and>
+        <os family="unix" />
+        <not>
+          <contains string="${os.name}" substring="mac"
+                    casesensitive="false" />
+        </not>
+      </and>
+    </condition>
+    <condition property="build.host.platform" value="linux">
+      <isset property="build.host.islinux" />
+    </condition>
+
+    <condition property="build.host.ismac">
+      <and>
+        <os family="unix" />
+        <contains string="${os.name}" substring="mac" casesensitive="false"/>
+      </and>
+    </condition>
+    <condition property="build.host.platform" value="mac">
+      <isset property="build.host.ismac" />
+    </condition>
+
+    <fail unless="build.host.platform"
+          message="Building on ${os.name} is not supported" />
+    <echo message="build.host.platform is: ${build.host.platform}"/>
+    <if>
+       <isset property="build.host.ismac"/>
+       <then>
+          <echo message="detected a mac host"/>
+          <property name="includepath" value="/opt/local/include:/usr/local/include"/>
+          <property name="client.lib.path" value="/opt/local/lib"/>
+       </then>
+    <elseif>
+       <isset property="build.host.islinux"/>
+       <then>
+          <echo message="detected a linux host"/>
+          <property name="client.lib.path" value="/usr/local/lib"/>
+       </then>
+    </elseif>
+    <else>
+       <echo message="failed to detect a host I know how to build on"/>
+    </else>
+    </if>
+  </target>
+
+  <target name="clean">
+     <delete dir="${build}" failonerror="false"/>
+  </target>
+
+  <target name="build" depends="prepare">
+    <javac srcdir="${src}"
+           includeantruntime="false"
+           destdir="${build}">
+       <classpath refid="compile.classpath"/>
+    </javac>
+  </target>
+
+  <target name="execute" depends="build"
+          description="Run the Java program">
+        <java classname="SampleUI" fork="yes">
+          <classpath refid="compile.classpath"/>
+        </java>
+  </target>
+
+</project>
