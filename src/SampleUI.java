@@ -281,7 +281,6 @@ public class SampleUI extends javax.swing.JFrame {
 
         out.println(obj.toString());
         out.close();
-        System.out.println("Saved all info into json file.");
       }
       catch (Exception e)
       {
