@@ -1,0 +1,3 @@
+[submodule "json-to-sql"]
+	url = https://github.com/eHealthAfrica/json-to-sql
+  path = json-to-sql

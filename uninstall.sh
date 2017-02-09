@@ -1,6 +1,6 @@
 cd ../
 echo "Deleting program files..."
-rm -rf sampleOPQRST
+rm -rf EMT-Advanced-Care
 echo "Removing added dependency files..."
 rm ~/anttasks.jar
 rm -rf ~/.ant
