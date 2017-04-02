@@ -22,7 +22,7 @@ Open your terminal and do the following.
 Just clone the repository and run the setup shell script to setup the machine to use this program.
 
 ```sh
-$ git clone https://github.com/binhonglee/sampleOPQRST
+$ git clone https://github.com/binhonglee/EMT-Advanced-Care
 $ cd sampleOPQRST
 $ ./setup.sh
 ```
@@ -32,13 +32,14 @@ $ ./setup.sh
 Of course, if you would like to do the manual way, feel free to follow the following steps.
 
 ```sh
-$ git clone https://github.com/binhonglee/sampleOPQRST
+$ git clone https://github.com/binhonglee/EMT-Advanced-Care
 $ cd sampleOPQRST
 $ cp lib/anttasks.jar ~
 $ pushd ~
 $ jar xf anttasks.jar
 $ pushd -0
-$ git clone https://github.com/eHealthAfrica/json-to-sql
+$ git submodule init
+$ git submodule update --init --recursive
 ```
 
 ## How to use
