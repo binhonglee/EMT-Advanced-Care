@@ -96,4 +96,7 @@
         </java>
   </target>
 
+  <target name="test" depends="clean,build,clean">
+  </target>
+
 </project>

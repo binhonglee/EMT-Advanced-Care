@@ -1,4 +1,6 @@
-# sampleOPQRST
+# EMT Advanced Care
+
+[![Build Status](https://travis-ci.org/binhonglee/EMT-Advanced-Care.svg?branch=master)](https://travis-ci.org/binhonglee/EMT-Advanced-Care)
 
 A Java application that will store your sample information into a json file format so that it can be retrieved by your medical personnel and would expedite the medical treatment process in a case of crisis.
 
