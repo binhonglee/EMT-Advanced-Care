@@ -9,10 +9,10 @@ A Java application that will store your sample information into a json file form
 #### Required:
 - Git
 - Java
+- Apache Ant
 - Pre-existing running SQL server with appropriate setup
 
 #### Setup will add:
-- Apache Ant (included in lib and setup.sh for installation if not already available)
 - [json-to-sql](https://github.com/eHealthAfrica/json-to-sql) (will be cloned through setup.sh)
 
 ## Setup
@@ -25,7 +25,7 @@ Just clone the repository and run the setup shell script to setup the machine to
 
 ```sh
 $ git clone https://github.com/binhonglee/EMT-Advanced-Care
-$ cd sampleOPQRST
+$ cd EMT-Advanced-Care
 $ ./setup.sh
 ```
 
@@ -35,11 +35,7 @@ Of course, if you would like to do the manual way, feel free to follow the follo
 
 ```sh
 $ git clone https://github.com/binhonglee/EMT-Advanced-Care
-$ cd sampleOPQRST
-$ cp lib/anttasks.jar ~
-$ pushd ~
-$ jar xf anttasks.jar
-$ pushd -0
+$ cd EMT-Advanced-Care
 $ git submodule init
 $ git submodule update --init --recursive
 ```
@@ -90,7 +86,5 @@ If you want to remove each item manually or pick what to keep, follow the steps 
 
 ```sh
 $ cd ../
-$ rm -rf sampleOPQRST
-$ rm ~/anttasks.jar
-$ rm -rf ~/.ant
+$ rm -rf EMT-Advanced-Care
 ```
